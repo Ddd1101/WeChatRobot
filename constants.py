@@ -3,7 +3,7 @@ from enum import IntEnum, unique
 
 @unique
 class ChatType(IntEnum):
-    # UnKnown = 0  # 未知, 即未设置
+    UnKnown = 0  # 未知, 即未设置
     TIGER_BOT = 1  # TigerBot
     CHATGPT = 2  # ChatGPT
     XINGHUO_WEB = 3  # 讯飞星火
@@ -15,7 +15,7 @@ class ChatType(IntEnum):
     def is_in_chat_types(chat_type: int) -> bool:
         if chat_type in [ChatType.TIGER_BOT.value, ChatType.CHATGPT.value,
                          ChatType.XINGHUO_WEB.value, ChatType.CHATGLM.value,
-                         ChatType.BardAssistant.value]:
+                         ChatType.BardAssistant.value, ChatType.UnKnown.value]:
             return True
         return False
 
