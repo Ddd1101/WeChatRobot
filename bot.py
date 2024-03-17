@@ -10,10 +10,16 @@ from constants import ChatType
 from robot import Robot, __version__
 from wcferry import Wcf
 
+from models.message import ReceiveMsg
+
+
+def transacion(robot: Robot) -> bool:
+    pass
+    # 数据收集
+
 
 def weather_report(robot: Robot) -> None:
-    """模拟发送天气预报
-    """
+    """模拟发送天气预报"""
 
     # 获取接收人
     receivers = robot.config.NEWS
@@ -49,7 +55,7 @@ def main(chat_type: int):
     # 每天 7 点发送天气预报
 
     for i in range(24):
-        str_hour = '{:02d}'.format(i)
+        str_hour = "{:02d}".format(i)
         robot.onEveryTime(str_hour + ":27", weather_report, robot=robot)
 
     # # 每天 7:30 发送新闻
@@ -64,6 +70,8 @@ def main(chat_type: int):
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument('-c', type=int, default=0, help=f'选择模型参数序号: {ChatType.help_hint()}')
+    parser.add_argument(
+        "-c", type=int, default=0, help=f"选择模型参数序号: {ChatType.help_hint()}"
+    )
     args = parser.parse_args().c
     main(args)
