@@ -10,7 +10,7 @@ from constants import ChatType
 from robot import Robot, __version__
 from wcferry import Wcf
 
-from models.message import ReceiveMsg
+# from models.message import ReceiveMsg
 
 
 def transacion(robot: Robot) -> bool:

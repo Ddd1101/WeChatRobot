@@ -20,13 +20,13 @@ from base.func_xinghuo_web import XinghuoWeb
 from configuration import Config
 from constants import ChatType
 from job_mgmt import Job
+from manager.message_processor import MessageProcessor
 
 __version__ = "39.0.10.1"
 
 
 class Robot(Job):
-    """个性化自己的机器人
-    """
+    """个性化自己的机器人"""
 
     def __init__(self, config: Config, wcf: Wcf, chat_type: int) -> None:
         self.wcf = wcf
@@ -34,19 +34,33 @@ class Robot(Job):
         self.LOG = logging.getLogger("Robot")
         self.wxid = self.wcf.get_self_wxid()
         self.allContacts = self.getAllContacts()
+        self.messageProcessor = MessageProcessor(config)
 
         if ChatType.is_in_chat_types(chat_type):
-            if chat_type == ChatType.TIGER_BOT.value and TigerBot.value_check(self.config.TIGERBOT):
+            if chat_type == ChatType.TIGER_BOT.value and TigerBot.value_check(
+                self.config.TIGERBOT
+            ):
                 self.chat = TigerBot(self.config.TIGERBOT)
-            elif chat_type == ChatType.CHATGPT.value and ChatGPT.value_check(self.config.CHATGPT):
+            elif chat_type == ChatType.CHATGPT.value and ChatGPT.value_check(
+                self.config.CHATGPT
+            ):
                 self.chat = ChatGPT(self.config.CHATGPT)
-            elif chat_type == ChatType.XINGHUO_WEB.value and XinghuoWeb.value_check(self.config.XINGHUO_WEB):
+            elif chat_type == ChatType.XINGHUO_WEB.value and XinghuoWeb.value_check(
+                self.config.XINGHUO_WEB
+            ):
                 self.chat = XinghuoWeb(self.config.XINGHUO_WEB)
-            elif chat_type == ChatType.CHATGLM.value and ChatGLM.value_check(self.config.CHATGLM):
+            elif chat_type == ChatType.CHATGLM.value and ChatGLM.value_check(
+                self.config.CHATGLM
+            ):
                 self.chat = ChatGLM(self.config.CHATGLM)
-            elif chat_type == ChatType.BardAssistant.value and BardAssistant.value_check(self.config.BardAssistant):
+            elif (
+                chat_type == ChatType.BardAssistant.value
+                and BardAssistant.value_check(self.config.BardAssistant)
+            ):
                 self.chat = BardAssistant(self.config.BardAssistant)
-            elif chat_type == ChatType.ZhiPu.value and ZhiPu.value_check(self.config.ZHIPU):
+            elif chat_type == ChatType.ZhiPu.value and ZhiPu.value_check(
+                self.config.ZHIPU
+            ):
                 self.chat = ZhiPu(self.config.ZHIPU)
             else:
                 self.LOG.warning("未配置模型")
@@ -73,7 +87,9 @@ class Robot(Job):
     @staticmethod
     def value_check(args: dict) -> bool:
         if args:
-            return all(value is not None for key, value in args.items() if key != 'proxy')
+            return all(
+                value is not None for key, value in args.items() if key != "proxy"
+            )
         return False
 
     def toAt(self, msg: WxMsg) -> bool:
@@ -111,13 +127,16 @@ class Robot(Job):
         return status
 
     def toChitchat(self, msg: WxMsg) -> bool:
-        """闲聊，接入 ChatGPT
-        """
+        """闲聊，接入 ChatGPT"""
         if not self.chat:  # 没接 ChatGPT，固定回复
             rsp = "你@我干嘛？"
+            rspTmp = self.messageProcessor.processMsg(msg)
+            print(rspTmp)
         else:  # 接了 ChatGPT，智能回复
             q = re.sub(r"@.*?[\u2005|\s]", "", msg.content).replace(" ", "")
-            rsp = self.chat.get_answer(q, (msg.roomid if msg.from_group() else msg.sender))
+            rsp = self.chat.get_answer(
+                q, (msg.roomid if msg.from_group() else msg.sender)
+            )
 
         if rsp:
             if msg.from_group():
@@ -194,10 +213,12 @@ class Robot(Job):
                     self.LOG.error(f"Receiving message error: {e}")
 
         self.wcf.enable_receiving_msg()
-        Thread(target=innerProcessMsg, name="GetMessage", args=(self.wcf,), daemon=True).start()
+        Thread(
+            target=innerProcessMsg, name="GetMessage", args=(self.wcf,), daemon=True
+        ).start()
 
     def sendTextMsg(self, msg: str, receiver: str, at_list: str = "") -> None:
-        """ 发送消息
+        """发送消息
         :param msg: 消息字符串
         :param receiver: 接收人wxid或者群id
         :param at_list: 要@的wxid, @所有人的wxid为：notify@all
@@ -226,7 +247,9 @@ class Robot(Job):
         获取联系人（包括好友、公众号、服务号、群成员……）
         格式: {"wxid": "NickName"}
         """
-        contacts = self.wcf.query_sql("MicroMsg.db", "SELECT UserName, NickName FROM Contact;")
+        contacts = self.wcf.query_sql(
+            "MicroMsg.db", "SELECT UserName, NickName FROM Contact;"
+        )
         return {contact["UserName"]: contact["NickName"] for contact in contacts}
 
     def keepRunningAndBlockProcess(self) -> None:
@@ -253,7 +276,9 @@ class Robot(Job):
         if nickName:
             # 添加了好友，更新好友列表
             self.allContacts[msg.sender] = nickName[0]
-            self.sendTextMsg(f"Hi {nickName[0]}，我自动通过了你的好友请求。", msg.sender)
+            self.sendTextMsg(
+                f"Hi {nickName[0]}，我自动通过了你的好友请求。", msg.sender
+            )
 
     def newsReport(self) -> None:
         receivers = self.config.NEWS
