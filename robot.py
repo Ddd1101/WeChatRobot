@@ -135,9 +135,8 @@ class Robot(Job):
                 rsp += "\n"
                 rsp += "----------------------------------------"
                 rsp += "\n"
-                rsp += "test"
-                rspTmp = self.messageProcessor.processMsg(msg)
-                print(rspTmp)
+                rsp += self.messageProcessor.processMsg(msg)
+                print(rsp)
             else:
                 rsp = "无处理内容"
         else:  # 接了 ChatGPT，智能回复
