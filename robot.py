@@ -129,9 +129,17 @@ class Robot(Job):
     def toChitchat(self, msg: WxMsg) -> bool:
         """闲聊，接入 ChatGPT"""
         if not self.chat:  # 没接 ChatGPT，固定回复
-            rsp = "你@我干嘛？"
-            rspTmp = self.messageProcessor.processMsg(msg)
-            print(rspTmp)
+            content_list = msg.content.split("\u2005")
+            if len(content_list) > 1:
+                rsp = msg.content.split("\u2005")[1]
+                rsp += "\n"
+                rsp += "----------------------------------------"
+                rsp += "\n"
+                rsp += "test"
+                rspTmp = self.messageProcessor.processMsg(msg)
+                print(rspTmp)
+            else:
+                rsp = "无处理内容"
         else:  # 接了 ChatGPT，智能回复
             q = re.sub(r"@.*?[\u2005|\s]", "", msg.content).replace(" ", "")
             rsp = self.chat.get_answer(
