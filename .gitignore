@@ -1,6 +1,7 @@
-.*
+# .*
 !.gitignore
 !.github/
+.wcf.lock
 
 *pyc
 __pycache__
