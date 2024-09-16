@@ -1,32 +1,21 @@
 # WeChatRobot
-
 一个基于 [WeChatFerry](https://github.com/lich0821/WeChatFerry) 的微信机器人示例。
 
-| [📖 文档](https://wechatferry.readthedocs.io/) | [📺 视频教程](https://mp.weixin.qq.com/s/APdjGyZ2hllXxyG_sNCfXQ) | [🙋 FAQ](https://mp.weixin.qq.com/s/bdPNrbJYoXhezCzHMqLoEw) | [🚨【微信机器人】沙雕行为合集](https://mp.weixin.qq.com/s/mc8O5iuhy46X4Bgqs80E8g) |
-| :--------------------------------------------: | :--------------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------------------------------------: |
+|[📖 文档](https://wechatferry.readthedocs.io/)|[📺 视频教程](https://mp.weixin.qq.com/s/APdjGyZ2hllXxyG_sNCfXQ)|[🙋 FAQ](https://mp.weixin.qq.com/s/Y2Q37VYV730Iu9TrgiCmCw)|[🚨【微信机器人】沙雕行为合集](https://mp.weixin.qq.com/s/mc8O5iuhy46X4Bgqs80E8g)|
+|:-:|:-:|:-:|:-:|
 
-| ![碲矿](https://s2.loli.net/2023/09/25/fub5VAPSa8srwyM.jpg) | ![赞赏](https://s2.loli.net/2023/09/25/gkh9uWZVOxzNPAX.jpg) |
-| :---------------------------------------------------------: | :---------------------------------------------------------: |
-|               后台回复 `WeChatFerry` 加群交流               |                       如果你觉得有用                        |
-
-## Quick Start
-
-0. 遇到问题先看看上面的文档、教程和 FAQ。
-   - 按照步骤来，版本保持一致，少走弯路。
-   - 按照步骤来，版本保持一致，少走弯路。
-   - # 按照步骤来，版本保持一致，少走弯路。
-     | ![碲矿](https://s2.loli.net/2023/09/25/fub5VAPSa8srwyM.jpg) | ![赞赏](https://s2.loli.net/2023/09/25/gkh9uWZVOxzNPAX.jpg) |
-     | :---------------------------------------------------------: | :---------------------------------------------------------: |
-     |                   后台回复 `WCF` 加群交流                   |                       如果你觉得有用                        |
+|![碲矿](https://s2.loli.net/2023/09/25/fub5VAPSa8srwyM.jpg)|![赞赏](https://s2.loli.net/2023/09/25/gkh9uWZVOxzNPAX.jpg)|
+|:-:|:-:|
+|后台回复 `WCF` 加群交流|如果你觉得有用|
 
 ## Quick Start
-
-0. 遇到问题先看看上面的**文档、教程和 FAQ。** - 按照步骤来，版本保持一致，少走弯路。 - 按照步骤来，版本保持一致，少走弯路。 - 按照步骤来，版本保持一致，少走弯路。
-
+0. 遇到问题先看看上面的**文档、教程和 FAQ。**
+    - 按照步骤来，版本保持一致，少走弯路。
+    - 按照步骤来，版本保持一致，少走弯路。
+    - 按照步骤来，版本保持一致，少走弯路。
 1. 安装 Python>=3.9（Python 12 需要自己编译依赖，慎选），例如 [3.10.11](https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe)
-2. 安装微信 `3.9.2.23`，下载地址在 [这里](https://github.com/lich0821/WeChatFerry/releases/latest)；也可以从 [WeChatSetup](https://gitee.com/lch0821/WeChatSetup) 找到。
+2. 安装微信 `3.9.10.27`，下载地址在 [这里](https://github.com/lich0821/WeChatRobot/releases/latest) 找到。
 3. 克隆项目
-
 ```sh
 git clone https://github.com/lich0821/WeChatRobot.git
 
@@ -37,7 +26,6 @@ git clone https://gitee.com/lch0821/WeChatRobot.git
 如果觉得克隆复杂，也可以直接下载 [最新版](https://github.com/lich0821/WeChatRobot/releases/latest) 到本地解压。
 
 4. 安装依赖
-
 ```sh
 # 升级 pip
 python -m pip install -U pip
@@ -65,7 +53,6 @@ python main.py
 启动之后，可以正常接收消息但不会响应群消息。参考下方 [修改配置](#config) 进行配置，以便响应特定群聊。
 
 下面代码为第二次运行：你可以通过命令行参数选择模型，默认是不选择，这样你配置了什么参数就跑什么模型。正因如此你需要配置前面所说四种模型中的至少一种（当然也可以都配置，想跑那个模型就选什么参数）, 然后就可以开始使用你的机器人了。
-
 ```sh
 python main.py
 
@@ -73,7 +60,6 @@ python main.py
 ```
 
 如果你配置了多个模型（不需要将其他配置注释或者移除），下面的内容才对你有帮助否则略过，通过 `python main.py -h` 通过参数可以选择要跑的模型。
-
 ```sh
 # 查看帮助
 python main.py -h
@@ -90,11 +76,10 @@ python main.py -c 2
 ```
 
 > python main.py -c C 其中参数 C 可选择如下所示
->
-> > 1.  tigerbot 模型
-> > 2.  chatgpt 模型
-> > 3.  讯飞星火模型
-> > 4.  chatglm 模型
+>> 1. tigerbot 模型
+>> 2. chatgpt 模型
+>> 3. 讯飞星火模型
+>> 4. chatglm 模型
 
 6. 停止
 
@@ -105,75 +90,63 @@ python main.py -c 2
 输入：`Ctrl+C`。否则，会出现各种奇怪问题。
 
 ### <a name="config"></a>修改配置
-
-ℹ️ _修改配置后，需要重新启动，以便让配置生效。_
+ℹ️ *修改配置后，需要重新启动，以便让配置生效。*
 
 配置文件 `config.yaml` 是运行程序后自动从模板复制过来的，功能默认关闭。
 
 #### 响应被 @ 消息
-
 为了响应群聊消息，需要添加相应的 `roomId`。
 
 第一次运行的时候，可以在手机上往需要响应的群里发消息，打印的消息中方括号里的就是；多个群用 `,` 分隔。
-
 ```yaml
 groups:
   enable: [] # 允许响应的群 roomId，大概长这样：2xxxxxxxxx3@chatroom, 多个群用 `,` 分隔
 ```
 
 #### 配置 AI 模型
-
 为了使用 AI 模型，需要对相应模型并进行配置。
 
 使用 ChatGLM 见注意事项 [README.MD](base/chatglm/README.MD)
 
 ```yaml
-chatgpt: # -----chatgpt配置这行不填-----
-  key: # 填写你 ChatGPT 的 key
-  api: https://api.openai.com/v1 # 如果你不知道这是干嘛的，就不要改
-  proxy: # 如果你在国内，你可能需要魔法，大概长这样：http://域名或者IP地址:端口号
-  prompt: 你是智能聊天机器人，你叫 wcferry # 根据需要对角色进行设定
+chatgpt:  # -----chatgpt配置这行不填-----
+  key:  # 填写你 ChatGPT 的 key
+  api: https://api.openai.com/v1  # 如果你不知道这是干嘛的，就不要改
+  proxy:  # 如果你在国内，你可能需要魔法，大概长这样：http://域名或者IP地址:端口号
+  prompt: 你是智能聊天机器人，你叫 wcferry  # 根据需要对角色进行设定
 
-chatglm: # -----chatglm配置这行不填-----
+chatglm:  # -----chatglm配置这行不填-----
   key: sk-012345678901234567890123456789012345678901234567 # 这个应该不用动
-  api: http://localhost:8000/v1 # 根据自己的chatglm地址修改
-  proxy: # 如果你在国内，你可能需要魔法，大概长这样：http://域名或者IP地址:端口号
-  prompt: 你是智能聊天机器人，你叫小薇 # 根据需要对角色进行设定
-  file_path: C:/Pictures/temp #设定生成图片和代码使用的文件夹路径
+  api: http://localhost:8000/v1  # 根据自己的chatglm地址修改
+  proxy:  # 如果你在国内，你可能需要魔法，大概长这样：http://域名或者IP地址:端口号
+  prompt: 你是智能聊天机器人，你叫小薇  # 根据需要对角色进行设定
+  file_path: C:/Pictures/temp  #设定生成图片和代码使用的文件夹路径
 
-tigerbot: # -----tigerbot配置这行不填-----
-  key: # key
-  model: # tigerbot-7b-sft
+tigerbot:  # -----tigerbot配置这行不填-----
+  key:  # key
+  model:  # tigerbot-7b-sft
 
 # 抓取方式详见文档：https://www.bilibili.com/read/cv27066577
-xinghuo_web: # -----讯飞星火web模式api配置这行不填-----
-  cookie: # cookie
-  fd: # fd
-  GtToken: # GtToken
-  prompt: 你是智能聊天机器人，你叫 wcferry。请用这个角色回答我的问题 # 根据需要对角色进行设定
+xinghuo_web:  # -----讯飞星火web模式api配置这行不填-----
+  cookie:  # cookie
+  fd:  # fd
+  GtToken:  # GtToken
+  prompt: 你是智能聊天机器人，你叫 wcferry。请用这个角色回答我的问题  # 根据需要对角色进行设定
 
 bard: # -----bard配置这行不填-----
   api_key: # api-key 创建地址：https://ai.google.dev/pricing，创建后复制过来即可
   model_name: gemini-pro # 新模型上线后可以选择模型
-  proxy: http://127.0.0.1:7890 # 如果你在国内，你可能需要魔法，大概长这样：http://域名或者IP地址:端口号
+  proxy: http://127.0.0.1:7890  # 如果你在国内，你可能需要魔法，大概长这样：http://域名或者IP地址:端口号
   # 提示词尽可能用英文，bard对中文提示词的效果不是很理想，下方提示词为英语老师的示例，请按实际需要修改,默认设置的提示词为谷歌创造的AI大语言模型
   # I want you to act as a spoken English teacher and improver. I will speak to you in English and you will reply to me in English to practice my spoken English. I want you to keep your reply neat, limiting the reply to 100 words. I want you to strictly correct my grammar mistakes, typos, and factual errors. I want you to ask me a question in your reply. Now let's start practicing, you could ask me a question first. Remember, I want you to strictly correct my grammar mistakes, typos, and factual errors.
   prompt: You am a large language model, trained by Google.
 ```
 
 ## HTTP
+如需要使用 HTTP 接口，请参考：
+* [wcfrust](https://github.com/lich0821/wcf-client-rust)（基于 Rust），开箱即用：[快速开始](https://github.com/lich0821/wcf-client-rust?tab=readme-ov-file#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)。
 
-如需要使用 HTTP 接口，请参考 [wcfhttp](https://wechatferry.readthedocs.io/zh/latest/?badge=latest)。
+* GoHttp（基于 Go），参考 [GoHttp README.MD](https://github.com/lich0821/WeChatFerry/blob/master/clients/gohttp/README.md)
 
-[![PyPi](https://img.shields.io/pypi/v/wcfhttp.svg)](https://pypi.python.org/pypi/wcfhttp) [![Downloads](https://static.pepy.tech/badge/wcfhttp)](https://pypi.python.org/pypi/wcfhttp) [![Documentation Status](https://readthedocs.org/projects/wechatferry/badge/?version=latest)](https://wechatferry.readthedocs.io/zh/latest/?badge=latest)
-
-- 跟踪原仓库 https://blog.csdn.net/qq_53225741/article/details/125014571
-
-如需要使用 HTTP 接口，请参考:
-
-- [wcfrust](https://github.com/lich0821/wcf-client-rust)（基于 Rust），开箱即用：[快速开始](https://github.com/lich0821/wcf-client-rust?tab=readme-ov-file#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)。
-
-- GoHttp（基于 Go），参考 [GoHttp README.MD](https://github.com/lich0821/WeChatFerry/blob/master/clients/gohttp/README.md)
-
-- ~~wcfhttp（基于 Python）~~
-  ❗ **wcfhttp 不再维护，有需要可以使用 [WcfRust](https://github.com/lich0821/wcf-client-rust) 或者 [GoHttp](clients/gohttp/README.md)。**
+## 更多客户端
+见 [WeChatFerry](https://github.com/lich0821/WeChatFerry?tab=readme-ov-file#python)。
